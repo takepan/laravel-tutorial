@@ -1,0 +1,6 @@
+app:
+  image: php:apache
+  tty: true
+  ports:
+    - 80:80
+
