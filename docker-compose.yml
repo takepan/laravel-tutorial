@@ -9,4 +9,24 @@ services:
     ports:
       - 80:80
       - 8000:8000
+    links:
+      - db
+    depends_on:
+      - db
+    volumes:
+      - ./src:/var/www/html
+  db:
+    image: postgres:10
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: test_db
+    volumes:
+      # docker volume create --name postgresql-volume
+      - postgresql-volume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432/tcp
+
+volumes:
+  postgresql-volume:
 
